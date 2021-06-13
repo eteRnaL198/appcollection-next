@@ -1,12 +1,30 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import { db } from '../lib/db';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-    </p>
-  </Layout>
-)
+const IndexPage = ({items}) => {
+  console.log(items);
+  return (
+    <Layout title="Home | Next.js + TypeScript Example">
+      <h1>Hello Next.js 👋</h1>
+      {/* <p>{JSON.parse(items)}</p> */}
+    </Layout>
+  )
+}
 
-export default IndexPage
+export const getStaticProps = async () => {
+  let data;
+  const docRef = db.collection('data').doc('bv47K7fcuX8iEmZ0c7eI');
+  await docRef.get().then((doc) => {
+    data = doc.data();
+  })
+  const data_json = JSON.stringify(data);
+
+  return {
+    props: {
+      data_json,
+    },
+  };
+}
+
+export default IndexPage;
