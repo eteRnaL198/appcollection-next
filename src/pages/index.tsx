@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import Layout from '../components/Layout';
 import { db } from '../lib/db';
 
-const IndexPage = ({items}) => {
+const IndexPage = ({ items }) => {
   console.log(items);
   return (
     <Layout title="Home | Next.js + TypeScript Example">
@@ -12,9 +13,9 @@ const IndexPage = ({items}) => {
   )
 }
 
-export const getStaticProps = async () => {
-  let data;
-  const docRef = db.collection('data').doc('bv47K7fcuX8iEmZ0c7eI');
+export const getStaticProps: GetStaticProps = async () => {
+  let data: any = 'a';
+  const docRef = db.collection("data").doc("bv47K7fcuX8iEmZ0c7eI");
   await docRef.get().then((doc) => {
     data = doc.data();
   })
