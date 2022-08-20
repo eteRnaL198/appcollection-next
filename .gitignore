@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#firebase
+appcollection-f9fae-firebase-adminsdk-brxtr-90f76db095.json

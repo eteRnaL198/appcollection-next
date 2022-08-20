@@ -14,7 +14,7 @@ const IndexPage = ({ items }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  let data: any = 'a';
+  let data: any;
   const docRef = db.collection("data").doc("bv47K7fcuX8iEmZ0c7eI");
   await docRef.get().then((doc) => {
     data = doc.data();
